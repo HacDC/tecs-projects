@@ -1,0 +1,10 @@
+.*
+!.gitignore
+*~
+.*.sw[a-z]
+\#*\#
+.\#*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
