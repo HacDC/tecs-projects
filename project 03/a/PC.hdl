@@ -16,6 +16,12 @@ CHIP PC {
     OUT out[16];
 
     PARTS:
-    // Put your code here.
+    Inc16(in=loop1, out=out1);  // Increment the current value
+    Mux16(a=loop1, b=out1, sel=inc, out=out2);  // If we're incrementing, use the incremented value
+    Mux16(a=out2, b=in, sel=load, out=out3);  // If we're loading, use the input value
+    Mux16(a=out3, b=false, sel=reset, out=out4);  // if we're resetting, set everything to 0
+    Or(a=load, b=reset, out=set);
+    Or(a=set, b=inc, out=set2);
+    Register(in=out4, load=set2, out=loop1, out=out);  // If load, inc, or reset was true store the new value
 }
 
